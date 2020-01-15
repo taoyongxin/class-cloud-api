@@ -19,4 +19,11 @@ public interface UserDevService {
      * @return Result
      */
     Result login(SignDto signDto);
+
+    /**
+     * 手机短信快捷登录
+     * @param signDto
+     * @return
+     */
+    Result sign(SignDto signDto);
 }

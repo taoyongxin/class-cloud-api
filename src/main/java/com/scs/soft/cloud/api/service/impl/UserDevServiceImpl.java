@@ -7,6 +7,7 @@ import com.scs.soft.cloud.api.domain.dto.SignDto;
 import com.scs.soft.cloud.api.domain.entity.UserDev;
 import com.scs.soft.cloud.api.mapper.UserDevMapper;
 import com.scs.soft.cloud.api.service.RedisService;
+import com.scs.soft.cloud.api.service.SmsService;
 import com.scs.soft.cloud.api.service.UserDevService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -25,6 +26,8 @@ public class UserDevServiceImpl implements UserDevService {
     private UserDevMapper userDevMapper;
     @Resource
     private RedisService redisService;
+    @Resource
+    private SmsService smsService;
 
 
     @Override
@@ -53,5 +56,10 @@ public class UserDevServiceImpl implements UserDevService {
             return Result.failure(ResultCode.USER_PASSWORD_ERROR);
         }
         return Result.failure(ResultCode.USER_ACCOUNT_ERROR);
+    }
+
+    @Override
+    public Result sign(SignDto signDto) {
+        return null;
     }
 }
