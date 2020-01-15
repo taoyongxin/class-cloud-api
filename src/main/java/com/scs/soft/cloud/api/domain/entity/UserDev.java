@@ -12,4 +12,5 @@ public class UserDev {
     private Integer id;
     private String mobile;
     private String password;
+    private String code;
 }
