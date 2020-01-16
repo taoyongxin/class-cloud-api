@@ -8,9 +8,10 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class UserDev {
+public class UserLogin {
     private Integer id;
     private String mobile;
     private String password;
     private String code;
+    private Short status;
 }

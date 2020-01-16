@@ -6,24 +6,11 @@ import com.scs.soft.cloud.api.domain.dto.SignDto;
 /**
  * @author Tao
  */
-public interface UserDevService {
-    /**
-     * 获取所有用户
-     * @return Result
-     */
-    Result getAllUser();
-
+public interface UserLoginService {
     /**
      * 帐号密码登录
      * @param signDto
      * @return Result
      */
     Result login(SignDto signDto);
-
-    /**
-     * 手机短信快捷登录
-     * @param signDto
-     * @return
-     */
-    Result sign(SignDto signDto);
 }
