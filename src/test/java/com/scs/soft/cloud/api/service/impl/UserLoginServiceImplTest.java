@@ -26,4 +26,14 @@ class UserLoginServiceImplTest {
         Result result = userLoginService.register(signDto);
         System.out.println(result);
     }
+
+    @Test
+    void sign() {
+        SignDto signDto = SignDto.builder()
+                .mobile("17826012341")
+                .sms("414908")
+                .build();
+        Result result = userLoginService.sign(signDto);
+        System.out.println(result);
+    }
 }

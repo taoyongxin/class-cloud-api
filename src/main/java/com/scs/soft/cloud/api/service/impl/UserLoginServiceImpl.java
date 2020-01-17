@@ -102,4 +102,37 @@ public class UserLoginServiceImpl implements UserLoginService {
         //验证未通过，返回实际的验证结果（错误，失效等）
         return result;
     }
+
+    /**
+     * 手机号快捷登录
+     * @param signDto
+     * @return
+     */
+    @Override
+    public Result sign(SignDto signDto) {
+       String mobile = signDto.getMobile();
+       QueryDto queryDto = QueryDto.builder().equalsString(mobile).build();
+       UserLogin userLogin;
+        try {
+            userLogin = userLoginMapper.findUserBy(queryDto);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if(userLogin != null){
+            //判断验证码是否正确
+            Result result = smsService.checkSms(signDto);
+            if(result.getCode() == 1){
+                //验证码通过
+                String token = DigestUtils.sha3_256Hex(userLogin.getCode());
+                UserLogin ul = UserLogin.builder().id(userLogin.getId()).mobile(userLogin.getMobile()).password(userLogin.getPassword())
+                        .code(token).status(userLogin.getStatus()).build();
+                return Result.success(ul);
+            } else {
+                return Result.failure(ResultCode.USER_VERIFY_CODE_ERROR);
+            }
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
 }

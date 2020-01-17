@@ -54,10 +54,26 @@ public class UserLoginController {
         return smsService.checkSms(signDto);
     }
 
+    /**
+     * 注册账号
+     * @param signDto
+     * @return
+     */
     @ApiOperation(value = "帐号注册（手机号码、密码、验证码）",notes = "")
     @PostMapping(value = "/register")
     Result register(@RequestBody SignDto signDto){
         return userLoginService.register(signDto);
+    }
+
+    /**
+     * 手机短信快捷登录
+     * @param signDto
+     * @return
+     */
+    @ApiOperation(value = "通过手机短信验证登录",notes = "data为用户的数据")
+    @PostMapping(value = "/sign")
+    Result sign(@RequestBody SignDto signDto){
+        return userLoginService.sign(signDto);
     }
 }
 

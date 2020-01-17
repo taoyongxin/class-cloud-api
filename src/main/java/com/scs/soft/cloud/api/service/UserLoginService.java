@@ -20,4 +20,10 @@ public interface UserLoginService {
      * @return Result
      */
     Result register(SignDto signDto);
+    /**
+     * 手机短信验证快捷登录
+     * @param signDto
+     * @return
+     */
+    Result sign(SignDto signDto);
 }
