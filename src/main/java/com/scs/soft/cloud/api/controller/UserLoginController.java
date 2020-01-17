@@ -53,5 +53,11 @@ public class UserLoginController {
     Result checkSms(@RequestBody SignDto signDto){
         return smsService.checkSms(signDto);
     }
+
+    @ApiOperation(value = "帐号注册（手机号码、密码、验证码）",notes = "")
+    @PostMapping(value = "/register")
+    Result register(@RequestBody SignDto signDto){
+        return userLoginService.register(signDto);
+    }
 }
 
