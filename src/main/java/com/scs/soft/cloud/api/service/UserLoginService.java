@@ -13,4 +13,11 @@ public interface UserLoginService {
      * @return Result
      */
     Result login(SignDto signDto);
+
+    /**
+     * 注册账号
+     * @param signDto
+     * @return Result
+     */
+    Result register(SignDto signDto);
 }

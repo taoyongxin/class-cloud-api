@@ -13,6 +13,8 @@ import java.sql.SQLException;
 class UserLoginMapperTest {
     @Resource
     private UserLoginMapper userLoginMapper;
+    @Resource
+    private CommonMapper commonMapper;
     @Test
     void findUserBy() throws SQLException {
         QueryDto queryDto = QueryDto.builder().equalsString("17826012341").build();
@@ -22,5 +24,18 @@ class UserLoginMapperTest {
         } else {
             System.out.println("not found");
         }
+    }
+
+    @Test
+    void insert() throws SQLException{
+        commonMapper.alert("t_user_login");
+        UserLogin userLogin = UserLogin.builder()
+                .mobile("17826012312")
+                .password("123")
+                .code("123456")
+                .status((short) 1)
+                .build();
+        userLoginMapper.insert(userLogin);
+
     }
 }

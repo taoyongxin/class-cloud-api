@@ -29,6 +29,7 @@ import javax.annotation.Resource;
 public class SmsServiceImpl implements SmsService {
     @Resource
     private RedisService redisService;
+
     @Override
     public Result sendSms(SignDto signDto) {
         String mobile = signDto.getMobile();
@@ -44,7 +45,7 @@ public class SmsServiceImpl implements SmsService {
         request.setAction("SendSms");
         request.putQueryParameter("RegionId", "cn-beijing");
         request.putQueryParameter("PhoneNumbers", mobile);
-        request.putQueryParameter("SignName", "云班课");
+        request.putQueryParameter("SignName", "个人空间");
         request.putQueryParameter("TemplateCode", "SMS_179216037");
         String verifyCode = StringUtil.getVerifyCode();
         request.putQueryParameter("TemplateParam", "{\"code\":" + verifyCode + "}");
