@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping(value = "/api/user")
-@Api(value = "UserLoginController",tags = {"用户模块接口"})
+@Api(value = "UserLoginController",tags = {"用户登录模块接口"})
 public class UserLoginController {
     @Resource
     private UserLoginService userLoginService;

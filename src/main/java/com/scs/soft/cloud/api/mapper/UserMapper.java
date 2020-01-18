@@ -33,10 +33,10 @@ public interface UserMapper {
      * @param user
      * @throws SQLException
      */
-    @Insert("INSERT INTO t_user (mobile,nickname,email,name,gender,school,faculty,job_number,experience,charisma,join_class_number" +
+    @Insert("INSERT INTO t_user (mobile,nickname,email,name,gender,school,faculty,job_number,experience,charisma,join_class_number," +
             "create_class_number,resource_number,activity_number,create_time,avatar,profession)" +
             "VALUES (#{mobile},#{nickname},#{email},#{name},#{gender},#{school},#{faculty},#{jobNumber},#{experience},#{charisma}," +
             "#{joinClassNumber},#{createClassNumber},#{resourceNumber},#{activityNumber},#{createTime},#{avatar},#{profession})")
-    @Options(useGeneratedKeys = true,keyProperty = "id")
+    @Options(useGeneratedKeys = true,keyProperty = "mobile")
     void insert(User user) throws SQLException;
 }

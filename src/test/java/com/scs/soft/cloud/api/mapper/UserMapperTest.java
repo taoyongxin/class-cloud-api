@@ -7,14 +7,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-
 import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 @SpringBootTest(classes = CloudApiApplication.class)
 class UserMapperTest {
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private CommonMapper commonMapper;
+
     @Test
     void findUserByMobile() throws SQLException {
         RegisterDto registerDto = RegisterDto.builder().mobile("17826012341").build();
@@ -24,5 +25,29 @@ class UserMapperTest {
         } else {
             System.out.println("未找到");
         }
+    }
+
+    @Test
+    void insert() throws SQLException{
+        User user = User.builder()
+                .mobile("13270003511")
+                .nickname("测试昵称")
+                .email("1427177855@qq.com")
+                .name("tyx")
+                .gender("男")
+                .school("南工院")
+               /* .faculty("计软院")
+                .jobNumber("1802333117")*/
+                .experience(0)
+                .charisma(0)
+                .joinClassNumber(0)
+                .createClassNumber(0)
+                .resourceNumber(0)
+                .activityNumber(0)
+                .createTime(LocalDateTime.now())
+                .avatar("1.jpg")
+                .profession("学生")
+                .build();
+        userMapper.insert(user);
     }
 }

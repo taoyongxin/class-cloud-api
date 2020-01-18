@@ -19,8 +19,8 @@ public class User {
     private String school;
     private String faculty;
     private String jobNumber;
-    private Long experience;
-    private Long charisma;
+    private Integer experience;
+    private Integer charisma;
     private Integer joinClassNumber;
     private Integer createClassNumber;
     private Integer resourceNumber;
