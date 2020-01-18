@@ -100,7 +100,7 @@ public class UserLoginServiceImpl implements UserLoginService {
             }
         }
         //验证未通过，返回实际的验证结果（错误，失效等）
-        return result;
+        return Result.failure(ResultCode.USER_VERIFY_CODE_ERROR);
     }
 
     /**
@@ -134,5 +134,24 @@ public class UserLoginServiceImpl implements UserLoginService {
         } else {
             return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
         }
+    }
+
+    /**
+     * 通过手机号修改密码
+     * @param userLogin
+     * @return
+     */
+    @Override
+    public Result updateUserPassword(UserLogin userLogin) {
+        UserLogin userLogin1 = UserLogin.builder()
+                .mobile(userLogin.getMobile())
+                .password(DigestUtils.md5Hex(userLogin.getPassword()))
+                .build();
+        try {
+            userLoginMapper.updatePassword(userLogin1);
+        } catch (SQLException e) {
+            log.error("修改密码出现异常");
+        }
+        return Result.success(userLogin1);
     }
 }

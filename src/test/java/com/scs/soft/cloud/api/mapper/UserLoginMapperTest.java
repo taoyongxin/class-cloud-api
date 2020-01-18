@@ -38,4 +38,13 @@ class UserLoginMapperTest {
         userLoginMapper.insert(userLogin);
 
     }
+
+    @Test
+    void updatePassword() throws SQLException{
+        UserLogin userLogin = UserLogin.builder()
+                .mobile("17826012312")
+                .password("159")
+                .build();
+        userLoginMapper.updatePassword(userLogin);
+    }
 }

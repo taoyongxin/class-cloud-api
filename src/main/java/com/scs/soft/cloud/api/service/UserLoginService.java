@@ -2,6 +2,7 @@ package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.domain.dto.SignDto;
+import com.scs.soft.cloud.api.domain.entity.UserLogin;
 
 /**
  * @author Tao
@@ -26,4 +27,11 @@ public interface UserLoginService {
      * @return
      */
     Result sign(SignDto signDto);
+
+    /**
+     * 根据手机号码修改密码
+     * @param userLogin
+     * @return
+     */
+    Result updateUserPassword(UserLogin userLogin);
 }

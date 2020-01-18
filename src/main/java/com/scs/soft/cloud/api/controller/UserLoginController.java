@@ -2,14 +2,12 @@ package com.scs.soft.cloud.api.controller;
 
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.domain.dto.SignDto;
+import com.scs.soft.cloud.api.domain.entity.UserLogin;
 import com.scs.soft.cloud.api.service.SmsService;
 import com.scs.soft.cloud.api.service.UserLoginService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -74,6 +72,12 @@ public class UserLoginController {
     @PostMapping(value = "/sign")
     Result sign(@RequestBody SignDto signDto){
         return userLoginService.sign(signDto);
+    }
+
+    @ApiOperation(value = "通过手机号码修改密码",notes = "")
+    @PutMapping(value = "/password")
+    Result updatePassword(@RequestBody UserLogin userLogin){
+        return userLoginService.updateUserPassword(userLogin);
     }
 }
 

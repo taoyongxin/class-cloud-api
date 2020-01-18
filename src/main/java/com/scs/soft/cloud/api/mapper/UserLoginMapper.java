@@ -2,10 +2,7 @@ package com.scs.soft.cloud.api.mapper;
 
 import com.scs.soft.cloud.api.domain.dto.QueryDto;
 import com.scs.soft.cloud.api.domain.entity.UserLogin;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
 
@@ -41,5 +38,12 @@ public interface UserLoginMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void insert(UserLogin userLogin) throws SQLException;
 
+    /**
+     * 通过手机号码修改密码
+     * @param mobile
+     * @throws SQLException
+     */
+    @Update("UPDATE t_user_login SET password = #{password} WHERE mobile=#{mobile}")
+    void updatePassword(UserLogin mobile) throws SQLException;
 
 }
