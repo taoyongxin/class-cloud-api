@@ -7,6 +7,7 @@ import com.scs.soft.cloud.api.domain.dto.RegisterDto;
 import com.scs.soft.cloud.api.domain.entity.User;
 import com.scs.soft.cloud.api.domain.entity.UserLogin;
 import com.scs.soft.cloud.api.domain.vo.UserIndexVo;
+import com.scs.soft.cloud.api.mapper.CommonMapper;
 import com.scs.soft.cloud.api.mapper.UserLoginMapper;
 import com.scs.soft.cloud.api.mapper.UserMapper;
 import com.scs.soft.cloud.api.service.RedisService;
@@ -31,6 +32,8 @@ public class UserServiceImpl implements UserService {
     private UserLoginMapper userLoginMapper;
     @Resource
     private RedisService redisService;
+    @Resource
+    private CommonMapper commonMapper;
 
     @Override
     public Result insertUser(RegisterDto registerDto) {
@@ -62,6 +65,7 @@ public class UserServiceImpl implements UserService {
                     .profession(registerDto.getProfession())
                     .build();
             try {
+                commonMapper.alert("t_user");
                 userMapper.insert(saveUser);
             } catch (SQLException e) {
                 log.error(e.getMessage());
