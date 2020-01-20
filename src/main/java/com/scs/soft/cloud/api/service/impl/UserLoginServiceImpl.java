@@ -154,4 +154,23 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
         return Result.success(userLogin1);
     }
+
+    @Override
+    public Result findUserBy(QueryDto queryDto) {
+        UserLogin userLogin = null;
+        try {
+            userLogin = userLoginMapper.findUserBy(queryDto);
+        } catch (SQLException e) {
+            log.error("查询用户出现异常");
+        }
+        if(userLogin != null){
+            if(userLogin.getStatus() == 1){
+                return Result.success(userLogin);
+            }else{
+                return Result.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
+            }
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
 }

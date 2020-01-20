@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.common.Result;
+import com.scs.soft.cloud.api.domain.dto.QueryDto;
 import com.scs.soft.cloud.api.domain.dto.SignDto;
 import com.scs.soft.cloud.api.domain.entity.UserLogin;
 
@@ -34,4 +35,11 @@ public interface UserLoginService {
      * @return
      */
     Result updateUserPassword(UserLogin userLogin);
+
+    /**
+     * 通过手机号码或者id查询用户
+     * @param queryDto
+     * @return
+     */
+    Result findUserBy(QueryDto queryDto);
 }

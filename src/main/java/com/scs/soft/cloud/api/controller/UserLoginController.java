@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.controller;
 
 import com.scs.soft.cloud.api.common.Result;
+import com.scs.soft.cloud.api.domain.dto.QueryDto;
 import com.scs.soft.cloud.api.domain.dto.SignDto;
 import com.scs.soft.cloud.api.domain.entity.UserLogin;
 import com.scs.soft.cloud.api.service.SmsService;
@@ -77,7 +78,14 @@ public class UserLoginController {
     @ApiOperation(value = "通过手机号码修改密码",notes = "")
     @PutMapping(value = "/password")
     Result updatePassword(@RequestBody UserLogin userLogin){
+
         return userLoginService.updateUserPassword(userLogin);
+    }
+
+    @ApiOperation(value = "通过手机号码查询用户数据",notes = "data为用户主表数据")
+    @PostMapping(value = "/mobile")
+    Result findUserBy(@RequestBody QueryDto queryDto){
+        return userLoginService.findUserBy(queryDto);
     }
 }
 
