@@ -47,9 +47,12 @@ public class UserLoginServiceImpl implements UserLoginService {
         }
         if(userLogin != null){
             if (DigestUtils.md5Hex(password).equals(userLogin.getPassword())){
-                String token = DigestUtils.sha3_256Hex(userLogin.getCode());
-                redisService.set(mobile,token,60 * 24L);
-                return Result.success(userLogin);
+                if(userLogin.getStatus() == 1){
+                    String token = DigestUtils.sha3_256Hex(userLogin.getCode());
+                    redisService.set(mobile,token,60 * 24L);
+                    return Result.success(userLogin);
+                }
+                return Result.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
             }
             return Result.failure(ResultCode.USER_PASSWORD_ERROR);
         }
@@ -124,10 +127,14 @@ public class UserLoginServiceImpl implements UserLoginService {
             Result result = smsService.checkSms(signDto);
             if(result.getCode() == 1){
                 //验证码通过
-                String token = DigestUtils.sha3_256Hex(userLogin.getCode());
-                UserLogin ul = UserLogin.builder().id(userLogin.getId()).mobile(userLogin.getMobile()).password(userLogin.getPassword())
-                        .code(token).status(userLogin.getStatus()).build();
-                return Result.success(ul);
+                if (userLogin.getStatus() == 1){
+                    String token = DigestUtils.sha3_256Hex(userLogin.getCode());
+                    UserLogin ul = UserLogin.builder().id(userLogin.getId()).mobile(userLogin.getMobile()).password(userLogin.getPassword())
+                            .code(token).status(userLogin.getStatus()).build();
+                    return Result.success(ul);
+                } else {
+                    return Result.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
+                }
             } else {
                 return Result.failure(ResultCode.USER_VERIFY_CODE_ERROR);
             }
