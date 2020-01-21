@@ -3,6 +3,7 @@ package com.scs.soft.cloud.api.domain.entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class User {
+    private Integer id;
     private String mobile;
     private String nickname;
     private String email;
@@ -28,4 +30,5 @@ public class User {
     private LocalDateTime createTime;
     private String avatar;
     private String profession;
+    private LocalDate birthday;
 }

@@ -15,7 +15,7 @@ class UserServiceImplTest {
     @Test
     void insertUser() {
         RegisterDto registerDto = RegisterDto.builder()
-                .mobile("17826012312")
+                .mobile("17826012355")
                 .profession("学生")
                 .name("tyx")
                 .jobNumber("1802222")

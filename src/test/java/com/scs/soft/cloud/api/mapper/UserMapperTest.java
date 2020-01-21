@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @SpringBootTest(classes = CloudApiApplication.class)
 class UserMapperTest {
@@ -15,6 +16,7 @@ class UserMapperTest {
     private UserMapper userMapper;
     @Resource
     private CommonMapper commonMapper;
+
 
     @Test
     void findUserByMobile() throws SQLException {
@@ -47,7 +49,29 @@ class UserMapperTest {
                 .createTime(LocalDateTime.now())
                 .avatar("1.jpg")
                 .profession("学生")
+                .birthday(LocalDate.now())
                 .build();
         userMapper.insert(user);
     }
+
+    @Test
+    void update() throws SQLException{
+        RegisterDto registerDto = RegisterDto.builder()
+                .mobile("17826012341")
+                .build();
+        User user = userMapper.findUserByMobile(registerDto);
+        user.setName("Tao.");
+        user.setNickname("许卿以沫");
+        user.setGender("男");
+        user.setBirthday(LocalDate.parse("2000-01-01"));
+        user.setProfession("老师");
+        user.setJobNumber("123456789");
+        user.setSchool("南京工业职业技术大学");
+        user.setFaculty("计软院");
+        user.setAvatar("1.jpg");
+        userMapper.update(user);
+
+    }
+
+
 }

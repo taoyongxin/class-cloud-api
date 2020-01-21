@@ -2,6 +2,7 @@ package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.domain.dto.RegisterDto;
+import com.scs.soft.cloud.api.domain.entity.User;
 
 /**
  * @author Tao
@@ -13,4 +14,11 @@ public interface UserService {
      * @return
      */
     Result insertUser(RegisterDto registerDto);
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     */
+    Result updateUser(User user);
 }

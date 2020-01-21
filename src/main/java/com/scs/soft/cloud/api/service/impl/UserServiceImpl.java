@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -63,6 +64,7 @@ public class UserServiceImpl implements UserService {
                     .createTime(LocalDateTime.now())
                     .avatar("https://niit-student.oss-cn-beijing.aliyuncs.com/cloud/488fbe22-edb5-4148-b75e-f0447734bce1.png")
                     .profession(registerDto.getProfession())
+                    .birthday(LocalDate.now())
                     .build();
             try {
                 commonMapper.alert("t_user");
@@ -89,5 +91,33 @@ public class UserServiceImpl implements UserService {
             return Result.failure(ResultCode.DATA_ALREADY_EXISTED);
         }
 
+    }
+
+    @Override
+    public Result updateUser(User user) {
+        RegisterDto registerDto = RegisterDto.builder().mobile(user.getMobile()).build();
+        User user1;
+        try {
+            user1 = userMapper.findUserByMobile(registerDto);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        user1.setName(user.getName());
+        user1.setNickname(user.getNickname());
+        user1.setGender(user.getGender());
+        user1.setBirthday(user.getBirthday());
+        user1.setProfession(user.getProfession());
+        user1.setJobNumber(user.getJobNumber());
+        user1.setSchool(user.getSchool());
+        user1.setFaculty(user.getFaculty());
+        user1.setAvatar(user.getAvatar());
+        try {
+            userMapper.update(user1);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        return Result.success();
     }
 }
