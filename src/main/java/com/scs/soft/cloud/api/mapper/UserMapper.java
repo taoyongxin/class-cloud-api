@@ -5,6 +5,8 @@ import com.scs.soft.cloud.api.domain.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Tao
@@ -25,8 +27,14 @@ public interface UserMapper {
             "</script>"})
     User findUserByMobile(@Param("registerDto") RegisterDto registerDto) throws SQLException;
 
-   /* @Select("SELECT * FROM t_user WHERE mobile=#{mobile}")
-    User get(User user) throws SQLException;*/
+    /**
+     * 通过id查询用户
+     * @param creatorId
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_user WHERE id=#{creatorId} ")
+    List<Map> getUserById(@Param("creator_id") int creatorId) throws SQLException;
 
     /**
      * 新增用户（主表），并返回自增主键
