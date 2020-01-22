@@ -16,4 +16,10 @@ class ClassServiceTest {
         Result result = classService.getClassById(1);
         System.out.println(result);
     }
+
+    @Test
+    void getClassByCreatorId() {
+        Result result = classService.getClassByCreatorId(1);
+        System.out.println(result);
+    }
 }

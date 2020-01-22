@@ -21,4 +21,5 @@ public class Class {
     private Integer activityNumber;
     private Integer messageNumber;
     private Integer memberNumber;
+    private String semester;
 }

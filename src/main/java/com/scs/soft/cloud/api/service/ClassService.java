@@ -12,4 +12,11 @@ public interface ClassService {
      * @return
      */
     Result getClassById(int id);
+
+    /**
+     * 通过创建者id查询该用户创建的班课
+     * @param id
+     * @return
+     */
+    Result getClassByCreatorId(int id);
 }

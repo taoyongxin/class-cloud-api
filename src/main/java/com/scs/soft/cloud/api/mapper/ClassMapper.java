@@ -1,5 +1,6 @@
 package com.scs.soft.cloud.api.mapper;
 
+import com.scs.soft.cloud.api.domain.entity.Class;
 import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
@@ -25,11 +26,18 @@ public interface ClassMapper {
             "FROM t_user_class t3 " +
             "LEFT JOIN t_user t2 " +
             "ON t3.user_id = t2.id " +
-
             "LEFT JOIN t_class t1 " +
             "ON t3.class_id = t1.id " +
-
-
             "WHERE t3.user_id = #{userId} AND t3.role_id != 1")
     List<Map> getClassByUserId(@Param("userId") int userId) throws SQLException;
+
+    /**
+     * 通过创建者id查询用户创建的班课
+     * @param creatorId
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_class WHERE creator_id=#{creatorId} ORDER BY ID DESC")
+    List<Class> getClassByCreatorId(int creatorId) throws SQLException;
+
 }

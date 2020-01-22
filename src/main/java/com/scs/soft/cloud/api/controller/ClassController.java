@@ -23,6 +23,13 @@ public class ClassController {
     @ApiOperation(value = "通过用户id查询用户加入的所有班课信息",notes = "")
     @GetMapping(value = "/all/{userId}")
     Result getClassById(@PathVariable int userId) {
+
         return classService.getClassById(userId);
+    }
+
+    @ApiOperation(value = "通过创建者id查询该用户创建的班课信息",notes = "")
+    @GetMapping(value = "/create/{creatorId}")
+    Result getClassByCreatorId(@PathVariable int creatorId){
+        return classService.getClassByCreatorId(creatorId);
     }
 }

@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.mapper;
 
 import com.scs.soft.cloud.api.CloudApiApplication;
+import com.scs.soft.cloud.api.domain.entity.Class;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -18,5 +19,11 @@ class ClassMapperTest {
     void getClassByUserId() throws SQLException {
         List<Map> classVoList = classMapper.getClassByUserId(1);
         System.out.println(classVoList);
+    }
+
+    @Test
+    void getClassByCreatorId() throws SQLException{
+        List<Class> classList = classMapper.getClassByCreatorId(4);
+        System.out.println(classList);
     }
 }

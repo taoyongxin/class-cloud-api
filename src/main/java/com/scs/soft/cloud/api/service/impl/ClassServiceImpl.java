@@ -2,6 +2,7 @@ package com.scs.soft.cloud.api.service.impl;
 
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.common.ResultCode;
+import com.scs.soft.cloud.api.domain.entity.Class;
 import com.scs.soft.cloud.api.mapper.ClassMapper;
 import com.scs.soft.cloud.api.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,5 +30,20 @@ public class ClassServiceImpl implements ClassService {
             return Result.failure(ResultCode.DATABASE_ERROR);
         }
         return Result.success(mapList);
+    }
+
+    @Override
+    public Result getClassByCreatorId(int id) {
+        List<Class> classList = null;
+        try {
+            classList = classMapper.getClassByCreatorId(id);
+        } catch (SQLException e) {
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if (classList!=null && !classList.isEmpty()){
+            return Result.success(classList);
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
     }
 }
