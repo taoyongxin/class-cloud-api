@@ -32,4 +32,9 @@ public class ClassController {
     Result getClassByCreatorId(@PathVariable int creatorId){
         return classService.getClassByCreatorId(creatorId);
     }
+    @ApiOperation(value = "通过邀请码查询班课信息",notes = "")
+    @GetMapping(value = "/invitation/{invitationCode}")
+    Result getClassByInvitationCode(@PathVariable int invitationCode){
+        return classService.getClassByInvitationCode(invitationCode);
+    }
 }

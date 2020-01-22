@@ -40,4 +40,21 @@ public interface ClassMapper {
     @Select("SELECT * FROM t_class WHERE creator_id=#{creatorId} ORDER BY ID DESC")
     List<Class> getClassByCreatorId(int creatorId) throws SQLException;
 
+    /**
+     * 通过班课邀请码查询班课信息
+     * @param invitationCode
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_class WHERE invitation_code=#{invitationCode} ORDER BY ID DESC")
+    @Results({
+            @Result(property = "userList",column = "creator_id",
+                    many = @Many(select = "com.scs.soft.cloud.api.mapper.UserMapper.getUserById")
+            )
+    })
+    Map<String,Object> getClassByInvitationCode(@Param("invitationCode") int invitationCode) throws SQLException;
+
+
+
+
 }

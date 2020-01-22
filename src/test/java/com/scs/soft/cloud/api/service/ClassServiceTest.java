@@ -22,4 +22,10 @@ class ClassServiceTest {
         Result result = classService.getClassByCreatorId(1);
         System.out.println(result);
     }
+
+    @Test
+    void getClassByInvitationCode() {
+        Result result = classService.getClassByInvitationCode(411001);
+        System.out.println(result);
+    }
 }

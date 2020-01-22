@@ -19,4 +19,11 @@ public interface ClassService {
      * @return
      */
     Result getClassByCreatorId(int id);
+
+    /**
+     * 通过邀请码查询班课信息
+     * @param invitationCode
+     * @return
+     */
+    Result getClassByInvitationCode(int invitationCode);
 }

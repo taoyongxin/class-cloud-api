@@ -26,4 +26,10 @@ class ClassMapperTest {
         List<Class> classList = classMapper.getClassByCreatorId(4);
         System.out.println(classList);
     }
+
+    @Test
+    void getClassByInvitationCode() throws SQLException{
+        Map<String, Object> map = classMapper.getClassByInvitationCode(411001);
+        System.out.println(map);
+    }
 }
