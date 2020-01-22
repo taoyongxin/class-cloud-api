@@ -30,6 +30,6 @@ public interface ClassMapper {
             "ON t3.class_id = t1.id " +
 
 
-            "WHERE t3.user_id = #{userId}")
+            "WHERE t3.user_id = #{userId} AND t3.role_id != 1")
     List<Map> getClassByUserId(@Param("userId") int userId) throws SQLException;
 }
