@@ -4,6 +4,7 @@ import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.common.ResultCode;
 import com.scs.soft.cloud.api.domain.entity.Class;
 import com.scs.soft.cloud.api.mapper.ClassMapper;
+import com.scs.soft.cloud.api.mapper.CommonMapper;
 import com.scs.soft.cloud.api.service.ClassService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class ClassServiceImpl implements ClassService {
     @Resource
     private ClassMapper classMapper;
+    @Resource
+    private CommonMapper commonMapper;
     @Override
     public Result getClassById(int id) {
         List<Map> mapList = null;
@@ -62,4 +65,5 @@ public class ClassServiceImpl implements ClassService {
             return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
         }
     }
+
 }

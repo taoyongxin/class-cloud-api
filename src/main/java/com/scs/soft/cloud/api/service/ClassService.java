@@ -26,4 +26,6 @@ public interface ClassService {
      * @return
      */
     Result getClassByInvitationCode(int invitationCode);
+
+
 }
