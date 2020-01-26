@@ -41,6 +41,14 @@ public interface ClassMapper {
     List<Class> getClassByCreatorId(int creatorId) throws SQLException;
 
     /**
+     * 通过班课id查询
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_class WHERE id = #{id}")
+    Class getClassById(int id) throws SQLException;
+    /**
      * 通过班课邀请码查询班课信息
      * @param invitationCode
      * @return

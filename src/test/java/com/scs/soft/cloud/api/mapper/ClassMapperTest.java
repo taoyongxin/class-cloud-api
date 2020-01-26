@@ -51,4 +51,10 @@ class ClassMapperTest {
         classMapper.insert(class1);
 
     }
+
+    @Test
+    void getClassById() throws SQLException{
+        Class class1 = classMapper.getClassById(1);
+        System.out.println(class1);
+    }
 }

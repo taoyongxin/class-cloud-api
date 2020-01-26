@@ -12,7 +12,7 @@ public interface ClassService {
      * @param id
      * @return
      */
-    Result getClassById(int id);
+    Result getClassByUserId(int id);
 
     /**
      * 通过创建者id查询该用户创建的班课
@@ -21,6 +21,12 @@ public interface ClassService {
      */
     Result getClassByCreatorId(int id);
 
+    /**
+     * 通过班课id查询班课信息
+     * @param id
+     * @return
+     */
+    Result getClassById(int id);
     /**
      * 通过邀请码查询班课信息
      * @param invitationCode

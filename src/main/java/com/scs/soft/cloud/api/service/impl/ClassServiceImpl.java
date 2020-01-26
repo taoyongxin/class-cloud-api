@@ -26,7 +26,7 @@ public class ClassServiceImpl implements ClassService {
     @Resource
     private CommonMapper commonMapper;
     @Override
-    public Result getClassById(int id) {
+    public Result getClassByUserId(int id) {
         List<Map> mapList = null;
         try {
             mapList = classMapper.getClassByUserId(id);
@@ -46,6 +46,21 @@ public class ClassServiceImpl implements ClassService {
         }
         if (classList!=null && !classList.isEmpty()){
             return Result.success(classList);
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
+
+    @Override
+    public Result getClassById(int id) {
+        Class class1 = null;
+        try {
+            class1 = classMapper.getClassById(id);
+        } catch (SQLException e) {
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if (class1 != null){
+            return Result.success(class1);
         }else {
             return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
         }

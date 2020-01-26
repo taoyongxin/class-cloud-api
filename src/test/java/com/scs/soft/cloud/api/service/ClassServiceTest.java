@@ -42,4 +42,11 @@ class ClassServiceTest {
         Result result = classService.insertClass(class1);
         System.out.println(result);
     }
+
+    @Test
+    void testGetClassById() {
+        Result result = classService.getClassById(1);
+        System.out.println(result);
+    }
+
 }
