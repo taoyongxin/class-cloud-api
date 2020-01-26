@@ -5,9 +5,14 @@ import java.util.Random;
 /**
  * @author Tao
  */
+
 public class StringUtil {
     private final static int LENGTH = 6;
+    private final static int LENGTH1 = 7;
 
+    public static void main(String[] args) {
+        System.out.println(getVerifyCode());
+    }
     /**
      * 获取六位随机短信验证码
      * @return
@@ -16,6 +21,20 @@ public class StringUtil {
         Random random = new Random();
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0;i<LENGTH;i++){
+            stringBuffer.append(random.nextInt(10));
+        }
+        return stringBuffer.toString();
+    }
+
+    /**
+     * 随机生成7位邀请码
+     * @return
+     */
+    public static String getInvitationCode(){
+        Random random = new Random();
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(random.nextInt(9)+1);
+        for (int i = 1;i<LENGTH1;i++){
             stringBuffer.append(random.nextInt(10));
         }
         return stringBuffer.toString();

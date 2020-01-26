@@ -54,7 +54,15 @@ public interface ClassMapper {
     })
     Map<String,Object> getClassByInvitationCode(@Param("invitationCode") int invitationCode) throws SQLException;
 
-
+    /**
+     * 新增班课
+     * @param class1
+     * @throws SQLException
+     */
+    @Insert("INSERT INTO t_class VALUES (null,#{creatorId},#{classType},#{thumbnail},#{name}" +
+            ",#{invitationCode},#{status},#{resourceNumber},#{activityNumber},#{messageNumber},#{memberNumber},#{semester})" )
+    @Options(useGeneratedKeys = true,keyProperty = "id")
+    void insert(Class class1)throws SQLException;
 
 
 }

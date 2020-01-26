@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.controller;
 
 import com.scs.soft.cloud.api.common.Result;
+import com.scs.soft.cloud.api.domain.entity.Class;
 import com.scs.soft.cloud.api.service.ClassService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,5 +37,10 @@ public class ClassController {
     @GetMapping(value = "/invitation/{invitationCode}")
     Result getClassByInvitationCode(@PathVariable int invitationCode){
         return classService.getClassByInvitationCode(invitationCode);
+    }
+    @ApiOperation(value = "创建班课",notes = "")
+    @PostMapping(value = "/create")
+    Result insertClass(@RequestBody Class class1){
+        return classService.insertClass(class1);
     }
 }

@@ -32,4 +32,23 @@ class ClassMapperTest {
         Map<String, Object> map = classMapper.getClassByInvitationCode(411001);
         System.out.println(map);
     }
+
+    @Test
+    void insert() throws SQLException{
+        Class class1 = Class.builder()
+                .creatorId(90)
+                .classType("11")
+                .thumbnail("111")
+                .name("111")
+                .invitationCode(1551)
+                .status((short)1)
+                .resourceNumber(0)
+                .activityNumber(0)
+                .messageNumber(0)
+                .memberNumber(0)
+                .semester("2000-01-01")
+                .build();
+        classMapper.insert(class1);
+
+    }
 }

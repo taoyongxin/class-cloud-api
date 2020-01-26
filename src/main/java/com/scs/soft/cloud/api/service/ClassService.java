@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.common.Result;
+import com.scs.soft.cloud.api.domain.entity.Class;
 
 /**
  * @author Tao
@@ -27,5 +28,10 @@ public interface ClassService {
      */
     Result getClassByInvitationCode(int invitationCode);
 
-
+    /**
+     * 新增班课
+     * @param class1
+     * @return
+     */
+    Result insertClass(Class class1);
 }

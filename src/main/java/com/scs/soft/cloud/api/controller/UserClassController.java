@@ -23,7 +23,7 @@ public class UserClassController {
     private UserClassService userClassService;
 
     @ApiOperation(value = "用户申请加入班课",notes = "")
-    @PostMapping()
+    @PostMapping("/into")
     Result insertUserClass(@RequestBody UserClass userClass){
         return userClassService.insertUserClass(userClass);
     }
