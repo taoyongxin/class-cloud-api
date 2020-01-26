@@ -22,4 +22,10 @@ public class Class {
     private Integer messageNumber;
     private Integer memberNumber;
     private String semester;
+    private Short joinPermission;
+    private String school;
+    private String faculty;
+    private String studyRequirement;
+    private String teachingProgress;
+    private String examArrangement;
 }

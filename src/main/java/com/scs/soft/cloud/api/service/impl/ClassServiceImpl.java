@@ -97,6 +97,12 @@ public class ClassServiceImpl implements ClassService {
                 .messageNumber(0)
                 .memberNumber(0)
                 .semester(class1.getSemester())
+                .joinPermission((short)1)
+                .school(class1.getSchool())
+                .faculty(class1.getFaculty())
+                .studyRequirement(class1.getStudyRequirement())
+                .teachingProgress(class1.getTeachingProgress())
+                .examArrangement(class1.getExamArrangement())
                 .build();
         try {
             commonMapper.alert("t_class");

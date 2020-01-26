@@ -68,7 +68,8 @@ public interface ClassMapper {
      * @throws SQLException
      */
     @Insert("INSERT INTO t_class VALUES (null,#{creatorId},#{classType},#{thumbnail},#{name}" +
-            ",#{invitationCode},#{status},#{resourceNumber},#{activityNumber},#{messageNumber},#{memberNumber},#{semester})" )
+            ",#{invitationCode},#{status},#{resourceNumber},#{activityNumber},#{messageNumber},#{memberNumber},#{semester}," +
+            "#{joinPermission},#{school},#{faculty},#{studyRequirement},#{teachingProgress},#{examArrangement})" )
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void insert(Class class1)throws SQLException;
 
