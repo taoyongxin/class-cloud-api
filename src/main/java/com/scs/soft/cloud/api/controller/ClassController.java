@@ -49,4 +49,9 @@ public class ClassController {
     Result insertClass(@RequestBody Class class1){
         return classService.insertClass(class1);
     }
+    @ApiOperation(value = "修改班课信息",notes = "")
+    @PostMapping(value = "/update")
+    Result updateClass(@RequestBody Class class1){
+        return classService.updateClass(class1);
+    }
 }

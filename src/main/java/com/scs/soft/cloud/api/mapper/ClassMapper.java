@@ -73,5 +73,15 @@ public interface ClassMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void insert(Class class1)throws SQLException;
 
+    /**
+     * 修改班课信息
+     * @param class1
+     * @throws SQLException
+     */
+    @Update("UPDATE t_class SET class_type=#{classType},thumbnail=#{thumbnail},name=#{name},semester=#{semester}," +
+            "join_permission=#{joinPermission},school=#{school},faculty=#{faculty},study_requirement=#{studyRequirement}," +
+            "teaching_progress=#{teachingProgress},exam_arrangement=#{examArrangement}" +
+            "WHERE id = #{id}")
+    void update(Class class1) throws SQLException;
 
 }

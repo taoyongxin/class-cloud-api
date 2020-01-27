@@ -40,4 +40,11 @@ public interface ClassService {
      * @return
      */
     Result insertClass(Class class1);
+
+    /**
+     * 修改班课信息
+     * @param class1
+     * @return
+     */
+    Result updateClass(Class class1);
 }

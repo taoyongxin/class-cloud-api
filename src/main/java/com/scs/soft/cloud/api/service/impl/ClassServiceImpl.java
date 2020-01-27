@@ -114,5 +114,37 @@ public class ClassServiceImpl implements ClassService {
         return Result.success(class2);
     }
 
+    @Override
+    public Result updateClass(Class class1) {
+        Class class2 = null;
+        try {
+            class2 = classMapper.getClassById(class1.getId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if (class2!=null){
+            class2.setClassType(class1.getClassType());
+            class2.setThumbnail(class1.getThumbnail());
+            class2.setName(class1.getName());
+            class2.setSemester(class1.getSemester());
+            class2.setJoinPermission(class1.getJoinPermission());
+            class2.setSchool(class1.getSchool());
+            class2.setFaculty(class1.getFaculty());
+            class2.setStudyRequirement(class1.getStudyRequirement());
+            class2.setTeachingProgress(class1.getTeachingProgress());
+            class2.setExamArrangement(class1.getExamArrangement());
+            try {
+                classMapper.update(class2);
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+                return Result.failure(ResultCode.DATABASE_ERROR);
+            }
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+       return Result.success();
+    }
+
 
 }

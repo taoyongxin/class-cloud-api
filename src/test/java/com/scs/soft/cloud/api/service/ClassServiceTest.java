@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 class ClassServiceTest {
     @Resource
     private ClassService classService;
+
     @Test
     void getClassById() {
         Result result = classService.getClassById(1);
@@ -49,4 +50,20 @@ class ClassServiceTest {
         System.out.println(result);
     }
 
+    @Test
+    void updateClass() {
+        Class class1 = Class.builder()
+                .id(2)
+                .classType("测试classType")
+                .thumbnail("111")
+                .name("111")
+                .semester("sdd")
+                .joinPermission((short)0)
+                .school("111")
+
+                .examArrangement("SSS")
+                .build();
+        classService.updateClass(class1);
+
+    }
 }

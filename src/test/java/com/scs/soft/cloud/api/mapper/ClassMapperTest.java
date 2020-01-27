@@ -57,4 +57,15 @@ class ClassMapperTest {
         Class class1 = classMapper.getClassById(1);
         System.out.println(class1);
     }
+
+    @Test
+    void update() throws SQLException{
+        Class class1 = classMapper.getClassById(1);
+        class1.setClassType("test");
+        class1.setThumbnail("test.jpg");
+        class1.setSchool("南工院");
+        class1.setFaculty("testFaculty");
+        classMapper.update(class1);
+
+    }
 }
