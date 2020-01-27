@@ -3,10 +3,14 @@ package com.scs.soft.cloud.api.service.impl;
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.common.ResultCode;
 import com.scs.soft.cloud.api.domain.dto.QueryDto;
+import com.scs.soft.cloud.api.domain.dto.RegisterDto;
 import com.scs.soft.cloud.api.domain.dto.SignDto;
+import com.scs.soft.cloud.api.domain.entity.User;
 import com.scs.soft.cloud.api.domain.entity.UserLogin;
+import com.scs.soft.cloud.api.domain.vo.UserLoginVo;
 import com.scs.soft.cloud.api.mapper.CommonMapper;
 import com.scs.soft.cloud.api.mapper.UserLoginMapper;
+import com.scs.soft.cloud.api.mapper.UserMapper;
 import com.scs.soft.cloud.api.service.RedisService;
 import com.scs.soft.cloud.api.service.SmsService;
 import com.scs.soft.cloud.api.service.UserLoginService;
@@ -32,15 +36,20 @@ public class UserLoginServiceImpl implements UserLoginService {
     private RedisService redisService;
     @Resource
     private SmsService smsService;
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public Result login(SignDto signDto) {
         String mobile = signDto.getMobile();
         String password = signDto.getPassword();
         UserLogin userLogin;
+        User user;
         QueryDto queryDto = QueryDto.builder().equalsString(mobile).build();
+        RegisterDto registerDto = RegisterDto.builder().mobile(mobile).build();
         try {
             userLogin = userLoginMapper.findUserBy(queryDto);
+            user = userMapper.findUserByMobile(registerDto);
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Result.failure(ResultCode.DATABASE_ERROR);
@@ -50,7 +59,16 @@ public class UserLoginServiceImpl implements UserLoginService {
                 if(userLogin.getStatus() == 1){
                     String token = DigestUtils.sha3_256Hex(userLogin.getCode());
                     redisService.set(mobile,token,60 * 24L);
-                    return Result.success(userLogin);
+                    UserLoginVo userLoginVo = UserLoginVo.builder()
+                            .id(userLogin.getId())
+                            .mobile(userLogin.getMobile())
+                            .password(userLogin.getPassword())
+                            .code(token)
+                            .status(userLogin.getStatus())
+                            .name(user.getName())
+                            .avatar(user.getAvatar())
+                            .build();
+                    return Result.success(userLoginVo);
                 }
                 return Result.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
             }
@@ -116,8 +134,11 @@ public class UserLoginServiceImpl implements UserLoginService {
        String mobile = signDto.getMobile();
        QueryDto queryDto = QueryDto.builder().equalsString(mobile).build();
        UserLogin userLogin;
+       User user;
+       RegisterDto registerDto = RegisterDto.builder().mobile(mobile).build();
         try {
             userLogin = userLoginMapper.findUserBy(queryDto);
+            user = userMapper.findUserByMobile(registerDto);
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Result.failure(ResultCode.DATABASE_ERROR);
@@ -131,7 +152,18 @@ public class UserLoginServiceImpl implements UserLoginService {
                     String token = DigestUtils.sha3_256Hex(userLogin.getCode());
                     UserLogin ul = UserLogin.builder().id(userLogin.getId()).mobile(userLogin.getMobile()).password(userLogin.getPassword())
                             .code(token).status(userLogin.getStatus()).build();
-                    return Result.success(ul);
+
+                    UserLoginVo userLoginVo = UserLoginVo.builder()
+                            .id(userLogin.getId())
+                            .mobile(userLogin.getMobile())
+                            .password(userLogin.getPassword())
+                            .code(token)
+                            .status(userLogin.getStatus())
+                            .name(user.getName())
+                            .avatar(user.getAvatar())
+                            .build();
+
+                    return Result.success(userLoginVo);
                 } else {
                     return Result.failure(ResultCode.USER_ACCOUNT_FORBIDDEN);
                 }

@@ -70,7 +70,6 @@ class UserMapperTest {
         user.setFaculty("计软院");
         user.setAvatar("1.jpg");
         userMapper.update(user);
-
     }
 
 
