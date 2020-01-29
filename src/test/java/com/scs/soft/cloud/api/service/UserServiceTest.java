@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.CloudApiApplication;
+import com.scs.soft.cloud.api.domain.dto.RegisterDto;
 import com.scs.soft.cloud.api.domain.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,5 +20,13 @@ class UserServiceTest {
                 .nickname("TYXTYXTYX")
                 .build();
         userService.updateUser(user);
+    }
+
+    @Test
+    void findUserByMobile() {
+        RegisterDto registerDto = RegisterDto.builder()
+                .mobile("17826012341")
+                .build();
+        System.out.println(userService.findUserByMobile(registerDto));
     }
 }

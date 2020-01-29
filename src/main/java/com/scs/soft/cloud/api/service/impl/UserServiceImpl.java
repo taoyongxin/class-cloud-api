@@ -122,8 +122,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result findUserByMobile(User user) {
-        return null;
+    public Result findUserByMobile(RegisterDto registerDto) {
+        User user;
+        try {
+            user = userMapper.findUserByMobile(registerDto);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        return Result.success(user);
     }
 
 

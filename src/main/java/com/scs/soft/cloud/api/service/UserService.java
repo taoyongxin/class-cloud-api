@@ -24,8 +24,8 @@ public interface UserService {
 
     /**
      * 通过手机号码查找用户
-     * @param user
+     * @param registerDto
      * @return
      */
-    Result findUserByMobile(User user);
+    Result findUserByMobile(RegisterDto registerDto);
 }

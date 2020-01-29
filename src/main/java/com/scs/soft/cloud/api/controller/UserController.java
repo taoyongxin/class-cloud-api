@@ -41,4 +41,10 @@ public class UserController {
     Result updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
+
+    @ApiOperation(value = "通过手机号码查询用户信息",notes = "date为用户信息数据")
+    @PostMapping(value = "/mobile")
+    Result findUserByMobile(@RequestBody RegisterDto registerDto){
+        return userService.findUserByMobile(registerDto);
+    }
 }
