@@ -14,6 +14,7 @@ public class UserLoginVo {
     private String password;
     private String code;
     private Short status;
+    private String profession;
 
     private String name;
     private String avatar;

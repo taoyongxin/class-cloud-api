@@ -121,5 +121,10 @@ public class UserServiceImpl implements UserService {
         return Result.success();
     }
 
+    @Override
+    public Result findUserByMobile(User user) {
+        return null;
+    }
+
 
 }

@@ -22,5 +22,10 @@ public interface UserService {
      */
     Result updateUser(User user);
 
-
+    /**
+     * 通过手机号码查找用户
+     * @param user
+     * @return
+     */
+    Result findUserByMobile(User user);
 }

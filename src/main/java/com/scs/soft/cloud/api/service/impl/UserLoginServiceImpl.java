@@ -65,6 +65,7 @@ public class UserLoginServiceImpl implements UserLoginService {
                             .password(userLogin.getPassword())
                             .code(token)
                             .status(userLogin.getStatus())
+                            .profession(user.getProfession())
                             .name(user.getName())
                             .avatar(user.getAvatar())
                             .build();
@@ -159,6 +160,7 @@ public class UserLoginServiceImpl implements UserLoginService {
                             .password(userLogin.getPassword())
                             .code(token)
                             .status(userLogin.getStatus())
+                            .profession(user.getProfession())
                             .name(user.getName())
                             .avatar(user.getAvatar())
                             .build();
