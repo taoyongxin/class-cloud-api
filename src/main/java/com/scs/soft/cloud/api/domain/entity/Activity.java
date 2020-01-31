@@ -20,8 +20,8 @@ public class Activity {
     private String theme;
     private LocalDateTime beginTime;
     private LocalDateTime endTime;
-    private  Integer joinPersonNumber;
+    private Integer joinPersonNumber;
     private Integer experience;
     private String thumbnail;
-    private Short use;
+    private Short purpose;
 }

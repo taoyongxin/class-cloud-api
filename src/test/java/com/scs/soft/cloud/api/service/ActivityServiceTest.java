@@ -23,7 +23,7 @@ class ActivityServiceTest {
                 .thumbnail("1.jpg")
                 .theme("13124")
                 .experience(3)
-                .use((short)1)
+                .purpose((short)1)
                 .build();
         activityService.insertActivity(activity);
     }

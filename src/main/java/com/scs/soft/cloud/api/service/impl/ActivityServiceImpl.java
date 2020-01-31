@@ -36,7 +36,7 @@ public class ActivityServiceImpl implements ActivityService {
                 .joinPersonNumber(activity.getJoinPersonNumber())
                 .experience(activity.getExperience())
                 .thumbnail(activity.getThumbnail())
-                .use(activity.getUse())
+                .purpose(activity.getPurpose())
                 .build();
         try {
             commonMapper.alert("t_activity");

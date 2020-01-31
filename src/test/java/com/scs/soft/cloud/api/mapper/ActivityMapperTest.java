@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = CloudApiApplication.class)
 class ActivityMapperTest {
 
@@ -25,8 +25,25 @@ class ActivityMapperTest {
                 .theme("测试标题")
                 .experience(3)
                 .thumbnail("1.jpg")
-                .use((short)1)
+                .purpose((short)1)
                 .build();
         activityMapper.insert(activity);
+    }
+
+    @Test
+    void getActivityById() throws SQLException{
+        System.out.println(activityMapper.getActivityById(2));
+    }
+
+    @Test
+    void update() throws SQLException{
+        Activity activity1 = activityMapper.getActivityById(1);
+        activity1.setGroupId(2);
+        activity1.setName("111");
+        activity1.setStatus((short)3);
+        activity1.setBeginTime(LocalDateTime.now());
+        activity1.setEndTime(LocalDateTime.now());
+        activity1.setPurpose((short)1);
+        activityMapper.update(activity1);
     }
 }

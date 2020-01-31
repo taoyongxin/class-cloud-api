@@ -22,7 +22,7 @@ public interface ClassMapper {
                     many = @Many(select = "com.scs.soft.cloud.api.mapper.UserMapper.getUserById")
             )
     })
-    @Select("SELECT t1.id,t1.creator_id,t1.thumbnail,t1.class_type,t1.name as name1,t2.name as name2,t2.avatar " +
+    @Select("SELECT t1.id,t1.creator_id,t1.thumbnail,t1.class_type,t1.name as name1,t2.name as name2,t2.avatar,t3.role_id " +
             "FROM t_user_class t3 " +
             "LEFT JOIN t_user t2 " +
             "ON t3.user_id = t2.id " +
