@@ -48,4 +48,40 @@ public class ActivityServiceImpl implements ActivityService {
         return Result.success();
 
     }
+
+    @Override
+    public Result updateActivity(Activity activity) {
+        Activity activity1 = null;
+        System.out.println(activity);
+        try {
+            activity1 = activityMapper.getActivityById(activity.getId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+
+        /*String beginTime = String.valueOf(activity.getBeginTime());
+        System.out.println(beginTime);
+        String endTime = String.valueOf(activity.getEndTime());
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime bt = LocalDateTime.parse(beginTime,df);
+        LocalDateTime et = LocalDateTime.parse(endTime,df);*/
+        if (activity1 != null) {
+            activity1.setGroupId(activity.getGroupId());
+            activity1.setName(activity.getName());
+            activity1.setStatus(activity.getStatus());
+            activity1.setBeginTime(activity.getBeginTime());
+            activity1.setEndTime(activity.getEndTime());
+            activity1.setPurpose(activity.getPurpose());
+            try {
+                activityMapper.update(activity1);
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+                return Result.failure(ResultCode.DATABASE_ERROR);
+            }
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+        return Result.success();
+    }
 }

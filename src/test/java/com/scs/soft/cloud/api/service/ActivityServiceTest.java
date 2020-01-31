@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @SpringBootTest(classes = CloudApiApplication.class)
 class ActivityServiceTest {
@@ -28,4 +30,19 @@ class ActivityServiceTest {
         activityService.insertActivity(activity);
     }
 
+    @Test
+    void updateActivity() {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime l1 = LocalDateTime.parse("2020-01-01 00:00:00",df);
+        Activity activity = Activity.builder()
+                .id(1)
+                .name("C++")
+                .purpose((short)1)
+                .groupId(1)
+                .status((short)1)
+                .beginTime(l1)
+                .endTime(l1)
+                .build();
+        activityService.updateActivity(activity);
+    }
 }

@@ -26,4 +26,11 @@ public class ActivityController {
     Result insertActivity(@RequestBody Activity activity){
         return activityService.insertActivity(activity);
     }
+
+
+    @ApiOperation(value = "修改活动信息",notes = "")
+    @PutMapping(value = "/update")
+    Result updateActivity(@RequestBody Activity activity){
+        return activityService.updateActivity(activity);
+    }
 }

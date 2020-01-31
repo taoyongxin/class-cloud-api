@@ -13,4 +13,11 @@ public interface ActivityService {
      * @return
      */
     Result insertActivity(Activity activity);
+
+    /**
+     * 修改活动信息
+     * @param activity
+     * @return
+     */
+    Result updateActivity(Activity activity);
 }
