@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @SpringBootTest(classes = CloudApiApplication.class)
 class ActivityMapperTest {
@@ -45,5 +47,11 @@ class ActivityMapperTest {
         activity1.setEndTime(LocalDateTime.now());
         activity1.setPurpose((short)1);
         activityMapper.update(activity1);
+    }
+
+    @Test
+    void getActivityByUserId() throws SQLException{
+        List<Map> activityList = activityMapper.getActivityByUserId(2,1);
+        System.out.println(activityList);
     }
 }

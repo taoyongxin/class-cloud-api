@@ -20,4 +20,12 @@ public interface ActivityService {
      * @return
      */
     Result updateActivity(Activity activity);
+
+    /**
+     * 通过用户id和班课id查询活动
+     * @param userId
+     * @param classId
+     * @return
+     */
+    Result getActivityByUserId(int userId,int classId);
 }

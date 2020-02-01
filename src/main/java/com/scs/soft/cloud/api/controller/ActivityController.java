@@ -33,4 +33,10 @@ public class ActivityController {
     Result updateActivity(@RequestBody Activity activity){
         return activityService.updateActivity(activity);
     }
+
+    @ApiOperation(value = "查询活动数据",notes = "返回用户的活动数据")
+    @GetMapping(value = "/{userId}&{classId}")
+    public Result selectActivity(@PathVariable int userId,@PathVariable int classId){
+        return activityService.getActivityByUserId(userId,classId);
+    }
 }
