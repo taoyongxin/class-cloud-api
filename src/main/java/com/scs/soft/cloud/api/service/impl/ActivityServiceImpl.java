@@ -33,6 +33,14 @@ public class ActivityServiceImpl implements ActivityService {
     private GroupMapper groupMapper;
     @Override
     public Result insertActivity(Activity activity) {
+        Group group;
+        try {
+            group = groupMapper.getGroupById(activity.getGroupId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        group.setActivityNumber(group.getActivityNumber()+1);
         Activity activity1 = Activity.builder()
                 .groupId(activity.getGroupId())
                 .userId(activity.getUserId())
@@ -48,6 +56,7 @@ public class ActivityServiceImpl implements ActivityService {
                 .purpose(activity.getPurpose())
                 .build();
         try {
+            groupMapper.update(group);
             commonMapper.alert("t_activity");
             activityMapper.insert(activity1);
         } catch (SQLException e) {
