@@ -28,4 +28,12 @@ public interface ActivityService {
      * @return
      */
     Result getActivityByUserId(int userId,int classId);
+
+    /**
+     * 删除活动（1.活动表 2.用户活动映射表 3.分组表）
+     * @param id
+     * @param groupId
+     * @return
+     */
+    Result deleteActivity(int id,int groupId);
 }

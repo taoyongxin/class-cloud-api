@@ -39,4 +39,10 @@ public class ActivityController {
     public Result selectActivity(@PathVariable int userId,@PathVariable int classId){
         return activityService.getActivityByUserId(userId,classId);
     }
+
+    @ApiOperation(value = "删除活动",notes = "")
+    @DeleteMapping(value = "/{id}&{groupId}")
+    Result deleteActivity(@PathVariable int id,@PathVariable int groupId){
+        return activityService.deleteActivity(id,groupId);
+    }
 }

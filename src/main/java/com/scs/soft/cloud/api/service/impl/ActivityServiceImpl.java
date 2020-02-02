@@ -3,8 +3,11 @@ package com.scs.soft.cloud.api.service.impl;
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.common.ResultCode;
 import com.scs.soft.cloud.api.domain.entity.Activity;
+import com.scs.soft.cloud.api.domain.entity.Group;
 import com.scs.soft.cloud.api.mapper.ActivityMapper;
 import com.scs.soft.cloud.api.mapper.CommonMapper;
+import com.scs.soft.cloud.api.mapper.GroupMapper;
+import com.scs.soft.cloud.api.mapper.UserActivityMapper;
 import com.scs.soft.cloud.api.service.ActivityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,10 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityMapper activityMapper;
     @Resource
     private CommonMapper commonMapper;
+    @Resource
+    private UserActivityMapper userActivityMapper;
+    @Resource
+    private GroupMapper groupMapper;
     @Override
     public Result insertActivity(Activity activity) {
         Activity activity1 = Activity.builder()
@@ -102,4 +109,27 @@ public class ActivityServiceImpl implements ActivityService {
             return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
         }
     }
+
+    @Override
+    public Result deleteActivity(int id, int groupId) {
+        Group group;
+        try {
+            group = groupMapper.getGroupById(groupId);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        group.setActivityNumber(group.getActivityNumber()-1);
+        try {
+            activityMapper.deleteActivity(id);
+            userActivityMapper.deleteUserActivity(id);
+            groupMapper.update(group);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        return Result.success();
+    }
+
+
 }

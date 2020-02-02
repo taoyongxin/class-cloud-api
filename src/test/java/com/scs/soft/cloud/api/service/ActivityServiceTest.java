@@ -45,4 +45,10 @@ class ActivityServiceTest {
                 .build();
         activityService.updateActivity(activity);
     }
+
+
+    @Test
+    void deleteActivity() {
+        activityService.deleteActivity(4,1);
+    }
 }

@@ -1,10 +1,7 @@
 package com.scs.soft.cloud.api.mapper;
 
 import com.scs.soft.cloud.api.domain.entity.Activity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -60,5 +57,12 @@ public interface ActivityMapper {
              "WHERE t2.class_id = #{classId} AND t3.user_id = #{userId} ")
     List<Map> getActivityByUserId(int userId , int classId) throws SQLException;
 
+    /**
+     * 删除活动
+     * @param id
+     * @throws SQLException
+     */
+     @Delete("DELETE FROM t_activity WHERE id = #{id}")
+    void deleteActivity(int id) throws SQLException;
 
 }

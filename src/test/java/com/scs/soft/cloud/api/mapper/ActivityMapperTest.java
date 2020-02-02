@@ -18,7 +18,7 @@ class ActivityMapperTest {
     private ActivityMapper activityMapper;
     @Test
     void insert() throws SQLException {
-        Activity activity = Activity.builder()
+        /*Activity activity = Activity.builder()
                 .groupId(1)
                 .userId(1)
                 .name("头脑风暴")
@@ -29,7 +29,7 @@ class ActivityMapperTest {
                 .thumbnail("1.jpg")
                 .purpose((short)1)
                 .build();
-        activityMapper.insert(activity);
+        activityMapper.insert(activity);*/
     }
 
     @Test
@@ -53,5 +53,10 @@ class ActivityMapperTest {
     void getActivityByUserId() throws SQLException{
         List<Map> activityList = activityMapper.getActivityByUserId(2,1);
         System.out.println(activityList);
+    }
+
+    @Test
+    void deleteActivity() throws SQLException{
+        activityMapper.deleteActivity(4);
     }
 }
