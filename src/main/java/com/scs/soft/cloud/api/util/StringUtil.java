@@ -1,5 +1,10 @@
 package com.scs.soft.cloud.api.util;
 
+import com.scs.soft.cloud.api.domain.entity.Group;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -11,7 +16,24 @@ public class StringUtil {
     private final static int LENGTH1 = 7;
 
     public static void main(String[] args) {
-        System.out.println(getVerifyCode());
+        ArrayList<Group> list = new ArrayList<>();
+        Group group1 = Group.builder().sortId(15).build();
+        list.add(group1);
+        Group group2 = Group.builder().sortId(19).build();
+        list.add(group2);
+        Group group3 = Group.builder().sortId(4).build();
+        list.add(group3);
+        DateComparator d =new DateComparator();
+        System.out.println("最大值"+ Collections.max(list,d).getSortId());
+        System.out.println("最小值"+ Collections.min(list,d).getSortId());
+    }
+
+    public static class DateComparator implements Comparator<Group>{
+
+        @Override
+        public int compare(Group o1, Group o2) {
+            return (o1.getSortId()<o2.getSortId()?-1:(o1.getSortId()==o2.getSortId()?0:1));
+        }
     }
     /**
      * 获取六位随机短信验证码
