@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.CloudApiApplication;
+import com.scs.soft.cloud.api.domain.dto.PageDto;
 import com.scs.soft.cloud.api.domain.entity.UserClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,5 +21,21 @@ class UserClassServiceTest {
                 .experience(0)
                 .build();
         userClassService.insertUserClass(userClass);
+    }
+
+    @Test
+    void selectUserClassByClassId() {
+        System.out.println(userClassService.selectUserClassByClassId(1));
+    }
+
+    @Test
+    void selectUserMessageByClassId() {
+        PageDto pageDto = PageDto.builder()
+                .field(1)
+                .currentPage(3)
+                .pageSize(2)
+                .build();
+        System.out.println(userClassService.selectUserMessageByClassId(pageDto));
+
     }
 }
