@@ -24,6 +24,11 @@ public class UserClassServiceImpl implements UserClassService {
     @Resource
     private UserClassMapper userClassMapper;
 
+    /**
+     * 新增用户班课表 + 新增分组表信息
+     * @param userClass
+     * @return
+     */
     @Override
     public Result insertUserClass(UserClass userClass) {
         UserClass userClass1 = UserClass.builder()
