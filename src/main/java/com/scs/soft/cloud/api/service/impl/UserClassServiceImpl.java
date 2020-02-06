@@ -69,18 +69,40 @@ public class UserClassServiceImpl implements UserClassService {
 
     @Override
     public Result selectUserMessageByClassId(PageDto pageDto) {
-
-        /*List<Map<String, Object>> maps = new ArrayList<>();*/
-        List<Map> mapList ;
+        /*List<Map> mapList ;
         int ranking = 1;
         try {
-
             mapList = userClassMapper.getUserMessageByClassId(pageDto);
             for (Map map1:mapList){
                 System.out.println(map1.get("user_id"));
                 map1.put("ranking",ranking);
-               /* maps.add(map1);*/
+               *//* maps.add(map1);*//*
                 ranking++;
+            }
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if (mapList!=null && !mapList.isEmpty()){
+            return Result.success(mapList);
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }*/
+        List<Map> mapList ;
+        int ranking = 1;
+        try {
+            mapList = userClassMapper.getUserMessageByClassId(pageDto);
+
+            System.out.println("len:"+mapList.size());
+            for (int i=0;i<mapList.size();i++){
+                System.out.println(mapList.get(i).get("user_id"));
+                mapList.get(i).put("ranking",ranking);
+                if (i<(mapList.size()-1)){
+                    if (mapList.get(i).get("experience") != mapList.get(i+1).get("experience")){
+                    ranking++;
+                  }
+                }
+
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
