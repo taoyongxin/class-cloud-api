@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Update;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Tao
@@ -48,4 +49,22 @@ public interface GroupMapper {
     @Insert("INSERT INTO t_group VALUES (null,#{name},#{classId},#{sortId},#{resourceNumber},#{activityNumber})")
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void insert(Group group) throws SQLException;
+
+    /**
+     * 分组情况
+     * @param classId
+     * @param userId
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT t1.id as group_table_id,t1.name as group_name,t1.sort_id,t1.activity_number," +
+            "t2.id as activity_table_id,t2.group_id,t2.name as activity_name,t2.type,t2.status,t2.join_person_number,t2.experience," +
+            "t3.user_id,t3.activity_id,t3.acquisition_experience,t3.join_status " +
+            "FROM t_group t1 " +
+            "LEFT JOIN t_activity t2 " +
+            "ON t1.id = t2.group_id " +
+            "LEFT JOIN t_user_activity t3 " +
+            "ON t2.id = t3.activity_id " +
+            "WHERE t1.class_id = #{classId} AND t1.activity_number != 0 AND t3.user_id = #{userId}")
+    List<Map> getGroupMessage(int classId,int userId) throws SQLException;
 }

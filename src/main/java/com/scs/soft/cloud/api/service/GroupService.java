@@ -13,4 +13,12 @@ public interface GroupService {
      * @return
      */
     Result insertGroup(Group group);
+
+    /**
+     * 查询分组情况（对应用户班课）
+     * @param classId
+     * @param userId
+     * @return
+     */
+    Result getGroupMessage(int classId,int userId);
 }

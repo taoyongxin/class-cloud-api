@@ -6,10 +6,7 @@ import com.scs.soft.cloud.api.service.GroupService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -30,4 +27,9 @@ public class GroupController {
         return groupService.insertGroup(group);
     }
 
+    @ApiOperation(value = "查询分组数据信息（加入者）",notes = "返回用户的活动数据")
+    @GetMapping(value = "/{classId}&{userId}")
+    public Result getGroupMessage(@PathVariable int classId,@PathVariable int userId){
+        return groupService.getGroupMessage(classId,userId);
+    }
 }

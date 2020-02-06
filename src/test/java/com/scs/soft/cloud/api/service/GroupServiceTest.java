@@ -21,4 +21,10 @@ class GroupServiceTest {
         Result result = groupService.insertGroup(group);
         System.out.println(result);
     }
+
+    @Test
+    void getGroupMessage() {
+        Result result = groupService.getGroupMessage(1,2);
+        System.out.println(result);
+    }
 }

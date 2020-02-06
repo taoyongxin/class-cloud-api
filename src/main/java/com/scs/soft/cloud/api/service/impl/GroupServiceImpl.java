@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Tao
@@ -67,5 +68,22 @@ public class GroupServiceImpl implements GroupService {
             }
         }
         return Result.success();
+    }
+
+    @Override
+    public Result getGroupMessage(int classId, int userId) {
+        List<Map> mapList ;
+        try {
+            mapList = groupMapper.getGroupMessage(classId,userId);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if(mapList!=null && !mapList.isEmpty()){
+            return Result.success(mapList);
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+
     }
 }

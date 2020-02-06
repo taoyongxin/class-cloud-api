@@ -47,4 +47,9 @@ class GroupMapperTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void getGroupMessage() throws SQLException{
+        System.out.println(groupMapper.getGroupMessage(1,2));
+    }
 }
