@@ -65,4 +65,18 @@ public interface ActivityMapper {
      @Delete("DELETE FROM t_activity WHERE id = #{id}")
     void deleteActivity(int id) throws SQLException;
 
+    /**
+     * 通过分组id查询活动数据（一对多使用）
+     * @param id
+     * @param userId
+     * @return
+     * @throws SQLException
+     */
+     @Select("SELECT t1.id as activity_table_id,t1.group_id,t1.name as activity_name,t1.type,t1.status,t1.join_person_number,t1.experience," +
+             "t2.user_id,t2.activity_id,t2.acquisition_experience,t2.join_status " +
+             "FROM t_activity t1 " +
+             "LEFT JOIN t_user_activity t2 " +
+             "ON t1.id = t2.activity_id " +
+             "WHERE t2.user_id = #{userId} AND t1.group_id = #{id}")
+    List<Map> getActivityByGroupId(@Param("id") int id , @Param("userId") int userId) throws SQLException;
 }

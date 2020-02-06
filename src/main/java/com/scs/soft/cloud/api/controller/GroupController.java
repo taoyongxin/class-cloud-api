@@ -32,4 +32,10 @@ public class GroupController {
     public Result getGroupMessage(@PathVariable int classId,@PathVariable int userId){
         return groupService.getGroupMessage(classId,userId);
     }
+
+    @ApiOperation(value = "查询分组内活动数据信息",notes = "")
+    @GetMapping(value = "/{classId}/{userId}")
+    public Result getGroup(@PathVariable int classId,@PathVariable int userId){
+        return groupService.getGroup(classId,userId);
+    }
 }

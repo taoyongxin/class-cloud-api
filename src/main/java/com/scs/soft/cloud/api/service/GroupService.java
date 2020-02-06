@@ -21,4 +21,12 @@ public interface GroupService {
      * @return
      */
     Result getGroupMessage(int classId,int userId);
+
+    /**
+     * 1
+     * @param classId
+     * @param userId
+     * @return
+     */
+    Result getGroup(int classId,int userId);
 }

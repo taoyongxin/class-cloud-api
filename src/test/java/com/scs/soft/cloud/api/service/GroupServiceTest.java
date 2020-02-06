@@ -27,4 +27,10 @@ class GroupServiceTest {
         Result result = groupService.getGroupMessage(1,2);
         System.out.println(result);
     }
+
+    @Test
+    void getGroup() {
+        Result result  = groupService.getGroup(1,2);
+        System.out.println(result);
+    }
 }

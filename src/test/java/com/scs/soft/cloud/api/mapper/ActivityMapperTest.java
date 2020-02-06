@@ -59,4 +59,12 @@ class ActivityMapperTest {
     void deleteActivity() throws SQLException{
         activityMapper.deleteActivity(4);
     }
+
+    @Test
+    void getActivityByGroupId() throws SQLException{
+        List<Map> mapList = activityMapper.getActivityByGroupId(1,25);
+        System.out.println(mapList);
+    }
+
+
 }

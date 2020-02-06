@@ -1,10 +1,7 @@
 package com.scs.soft.cloud.api.mapper;
 
 import com.scs.soft.cloud.api.domain.entity.Group;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -67,4 +64,25 @@ public interface GroupMapper {
             "ON t2.id = t3.activity_id " +
             "WHERE t1.class_id = #{classId} AND t1.activity_number != 0 AND t3.user_id = #{userId}")
     List<Map> getGroupMessage(int classId,int userId) throws SQLException;
+
+
+
+    /*@Results({
+            @Result(property = "activityList",column = "id",
+                    many = @Many(select = "com.scs.soft.cloud.api.mapper.ActivityMapper.getActivityByGroupId")
+            ),
+            @Result(property = "id",column = "id")
+    })
+    @Select("SELECT * FROM t_group WHERE class_id = #{classId} AND activity_number != 0 ")
+    List<Map> getGroup(int classId,int userId) throws SQLException;*/
+
+    /**
+     *
+     * 11
+     * @param classId
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_group WHERE class_id = #{classId} AND activity_number != 0 ")
+    List<Map> getGroup(int classId) throws SQLException;
 }

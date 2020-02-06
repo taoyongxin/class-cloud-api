@@ -52,4 +52,11 @@ class GroupMapperTest {
     void getGroupMessage() throws SQLException{
         System.out.println(groupMapper.getGroupMessage(1,2));
     }
+
+    @Test
+    void getGroup() throws SQLException{
+        System.out.println(groupMapper.getGroup(1));
+    }
+
+
 }

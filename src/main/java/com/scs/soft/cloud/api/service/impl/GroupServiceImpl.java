@@ -3,6 +3,7 @@ package com.scs.soft.cloud.api.service.impl;
 import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.common.ResultCode;
 import com.scs.soft.cloud.api.domain.entity.Group;
+import com.scs.soft.cloud.api.mapper.ActivityMapper;
 import com.scs.soft.cloud.api.mapper.CommonMapper;
 import com.scs.soft.cloud.api.mapper.GroupMapper;
 import com.scs.soft.cloud.api.service.GroupService;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Tao
@@ -26,6 +25,8 @@ public class GroupServiceImpl implements GroupService {
     private CommonMapper commonMapper;
     @Resource
     private GroupMapper groupMapper;
+    @Resource
+    private ActivityMapper activityMapper;
     @Override
     public Result insertGroup(Group group) {
         List<Group> groupList;
@@ -85,5 +86,23 @@ public class GroupServiceImpl implements GroupService {
             return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
         }
 
+    }
+
+    @Override
+    public Result getGroup(int classId, int userId) {
+        List<Map> groups;
+        List<Map> map;
+        try {
+            groups = groupMapper.getGroup(classId);
+            for (Map group:groups){
+                System.out.println(group.get("name"));
+                map = activityMapper.getActivityByGroupId(Integer.parseInt(group.get("id").toString()),userId);
+                group.put("activityList",map);
+            }
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        return Result.success(groups);
     }
 }
