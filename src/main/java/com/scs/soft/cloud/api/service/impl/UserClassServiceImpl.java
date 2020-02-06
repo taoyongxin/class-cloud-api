@@ -69,9 +69,19 @@ public class UserClassServiceImpl implements UserClassService {
 
     @Override
     public Result selectUserMessageByClassId(PageDto pageDto) {
-        List<Map> mapList = null;
+
+        /*List<Map<String, Object>> maps = new ArrayList<>();*/
+        List<Map> mapList ;
+        int ranking = 1;
         try {
+
             mapList = userClassMapper.getUserMessageByClassId(pageDto);
+            for (Map map1:mapList){
+                System.out.println(map1.get("user_id"));
+                map1.put("ranking",ranking);
+               /* maps.add(map1);*/
+                ranking++;
+            }
         } catch (SQLException e) {
             log.error(e.getMessage());
             return Result.failure(ResultCode.DATABASE_ERROR);

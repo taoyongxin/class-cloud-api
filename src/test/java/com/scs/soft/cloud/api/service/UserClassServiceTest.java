@@ -32,10 +32,12 @@ class UserClassServiceTest {
     void selectUserMessageByClassId() {
         PageDto pageDto = PageDto.builder()
                 .field(1)
-                .currentPage(3)
-                .pageSize(2)
+                .currentPage(1)
+                .pageSize(4)
                 .build();
         System.out.println(userClassService.selectUserMessageByClassId(pageDto));
 
     }
+
+
 }
