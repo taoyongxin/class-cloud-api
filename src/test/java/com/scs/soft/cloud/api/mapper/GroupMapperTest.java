@@ -63,4 +63,11 @@ class GroupMapperTest {
     void getResource() throws SQLException{
         System.out.println(groupMapper.getResource(1));
     }
+
+    @Test
+    void updateStyle() throws SQLException{
+        Group group = groupMapper.getGroupById(21);
+        group.setActivityStyle((short)1);
+        groupMapper.updateStyle(group);
+    }
 }

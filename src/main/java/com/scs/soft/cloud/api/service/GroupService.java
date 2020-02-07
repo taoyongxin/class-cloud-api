@@ -37,4 +37,11 @@ public interface GroupService {
      * @return
      */
     Result getResource(int userId,int classId);
+
+    /**
+     * 修改分组展开或者收缩状态
+     * @param group
+     * @return
+     */
+    Result updateGroupStyle(Group group);
 }

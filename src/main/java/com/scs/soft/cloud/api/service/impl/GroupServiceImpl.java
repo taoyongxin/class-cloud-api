@@ -134,4 +134,32 @@ public class GroupServiceImpl implements GroupService {
         }
         return Result.success(groups);
     }
+
+    @Override
+    public Result updateGroupStyle(Group group) {
+        Group group1;
+        try {
+            group1 = groupMapper.getGroupById(group.getId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if(group1 != null){
+            if (group.getActivityStyle() != null){
+                group1.setActivityStyle(group.getActivityStyle());
+            }
+            if (group.getResourceStyle() != null){
+                group1.setResourceStyle(group.getResourceStyle());
+            }
+            try {
+                groupMapper.updateStyle(group1);
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+                return Result.failure(ResultCode.DATABASE_ERROR);
+            }
+        } else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+        return Result.success();
+    }
 }

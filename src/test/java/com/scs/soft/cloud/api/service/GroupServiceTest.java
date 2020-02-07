@@ -39,4 +39,14 @@ class GroupServiceTest {
         Result result  = groupService.getResource(1,1);
         System.out.println(result);
     }
+
+    @Test
+    void updateGroupStyle() {
+        Group group = Group.builder()
+                .id(21)
+                .activityStyle((short)0)
+                .build();
+        Result result = groupService.updateGroupStyle(group);
+        System.out.println(result);
+    }
 }

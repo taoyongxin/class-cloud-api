@@ -95,4 +95,11 @@ public interface GroupMapper {
     @Select("SELECT * FROM t_group WHERE class_id = #{classId} AND resource_number != 0 ")
     List<Map> getResource(int classId) throws SQLException;
 
+    /**
+     * 修改活动、资源分组（展开或者收缩）状态
+     * @param group
+     * @throws SQLException
+     */
+    @Update("UPDATE t_group SET activity_style = #{activityStyle} , resource_style = #{resourceStyle} WHERE id = #{id} ")
+    void updateStyle(Group group) throws SQLException;
 }

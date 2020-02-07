@@ -15,4 +15,6 @@ public class Group {
     private Integer sortId;
     private Integer resourceNumber;
     private Integer activityNumber;
+    private Short activityStyle;
+    private Short resourceStyle;
 }

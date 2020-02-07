@@ -44,4 +44,10 @@ public class GroupController {
     public Result getResource(@PathVariable int userId,@PathVariable int classId){
         return groupService.getResource(userId,classId);
     }
+
+    @ApiOperation(value = "修改分组的资源活动style",notes = "")
+    @PostMapping(value = "/style")
+    Result updateGroupStyle(@RequestBody Group group){
+        return groupService.updateGroupStyle(group);
+    }
 }
