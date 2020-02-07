@@ -1,6 +1,7 @@
 package com.scs.soft.cloud.api.service;
 
 import com.scs.soft.cloud.api.CloudApiApplication;
+import com.scs.soft.cloud.api.common.Result;
 import com.scs.soft.cloud.api.domain.entity.Activity;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,5 +51,15 @@ class ActivityServiceTest {
     @Test
     void deleteActivity() {
         activityService.deleteActivity(4,1);
+    }
+
+    @Test
+    void updateStyle() {
+        Activity activity = Activity.builder()
+                .id(1)
+                .style((short)0)
+                .build();
+        Result result = activityService.updateStyle(activity);
+        System.out.println(result);
     }
 }

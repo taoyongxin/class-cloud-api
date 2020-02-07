@@ -24,4 +24,5 @@ public class Activity {
     private Integer experience;
     private String thumbnail;
     private Short purpose;
+    private Short style;
 }

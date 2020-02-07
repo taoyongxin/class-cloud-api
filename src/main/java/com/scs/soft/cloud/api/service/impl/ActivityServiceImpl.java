@@ -140,5 +140,28 @@ public class ActivityServiceImpl implements ActivityService {
         return Result.success();
     }
 
+    @Override
+    public Result updateStyle(Activity activity) {
+        Activity activity1;
+        try {
+            activity1 = activityMapper.getActivityById(activity.getId());
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        if (activity1 != null){
+           activity1.setStyle(activity.getStyle());
+            try {
+                activityMapper.updateStyle(activity1);
+            } catch (SQLException e) {
+                log.error(e.getMessage());
+                return Result.failure(ResultCode.DATABASE_ERROR);
+            }
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+        return Result.success();
+    }
+
 
 }

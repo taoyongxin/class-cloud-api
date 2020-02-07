@@ -27,4 +27,5 @@ public class Resource {
     private LocalDateTime createTime;
     private Integer viewers;
     private String storageSize;
+    private Short style;
 }

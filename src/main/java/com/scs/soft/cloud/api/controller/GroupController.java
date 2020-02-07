@@ -46,7 +46,7 @@ public class GroupController {
     }
 
     @ApiOperation(value = "修改分组的资源活动style",notes = "")
-    @PostMapping(value = "/style")
+    @PutMapping(value = "/style")
     Result updateGroupStyle(@RequestBody Group group){
         return groupService.updateGroupStyle(group);
     }

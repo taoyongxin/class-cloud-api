@@ -16,4 +16,9 @@ class ResourceMapperTest {
     void getResourceByGroupId() throws SQLException {
         System.out.println(resourceMapper.getResourceByGroupId(1,1));
     }
+
+    @Test
+    void getResourceById() throws SQLException{
+        System.out.println(resourceMapper.getResourceById(1));
+    }
 }

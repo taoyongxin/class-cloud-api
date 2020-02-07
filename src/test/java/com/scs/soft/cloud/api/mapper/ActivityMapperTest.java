@@ -67,4 +67,10 @@ class ActivityMapperTest {
     }
 
 
+    @Test
+    void updateStyle() throws SQLException{
+        Activity activity = activityMapper.getActivityById(1);
+        activity.setStyle((short)1);
+        activityMapper.updateStyle(activity);
+    }
 }

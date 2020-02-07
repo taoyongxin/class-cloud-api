@@ -45,4 +45,10 @@ public class ActivityController {
     Result deleteActivity(@PathVariable int id,@PathVariable int groupId){
         return activityService.deleteActivity(id,groupId);
     }
+
+    @ApiOperation(value = "修改活动style",notes = "")
+    @PutMapping(value = "/style")
+    Result updateStyle(@RequestBody Activity activity){
+        return activityService.updateStyle(activity);
+    }
 }

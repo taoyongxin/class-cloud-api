@@ -46,7 +46,7 @@ public interface ActivityMapper {
      * @return
      * @throws SQLException
      */
-     @Select("SELECT t1.id,t1.group_id,t1.type,t1.name as activity_name,t1.join_person_number,t1.begin_time,t1.end_time,t1.experience,t1.status " +
+     @Select("SELECT t1.id,t1.group_id,t1.type,t1.name as activity_name,t1.join_person_number,t1.begin_time,t1.end_time,t1.experience,t1.status,t1.style " +
              ",t2.name as group_name,t2.class_id,t2.sort_id,t2.activity_number " +
              ",t3.user_id,t3.activity_id,t3.join_time,t3.acquisition_experience,t3.join_status " +
              "FROM t_user_activity t3 " +
@@ -72,11 +72,19 @@ public interface ActivityMapper {
      * @return
      * @throws SQLException
      */
-     @Select("SELECT t1.id as activity_table_id,t1.group_id,t1.name as activity_name,t1.type,t1.status,t1.join_person_number,t1.experience," +
+     @Select("SELECT t1.id as activity_table_id,t1.group_id,t1.name as activity_name,t1.type,t1.status,t1.begin_time,t1.end_time,t1.join_person_number,t1.experience,t1.style," +
              "t2.user_id,t2.activity_id,t2.acquisition_experience,t2.join_status " +
              "FROM t_activity t1 " +
              "LEFT JOIN t_user_activity t2 " +
              "ON t1.id = t2.activity_id " +
              "WHERE t2.user_id = #{userId} AND t1.group_id = #{id}")
     List<Map> getActivityByGroupId(@Param("id") int id , @Param("userId") int userId) throws SQLException;
+
+    /**
+     * 修改样式style
+     * @param activity
+     * @throws SQLException
+     */
+    @Update("UPDATE t_activity SET style = #{style} WHERE id = #{id} ")
+    void updateStyle(Activity activity) throws SQLException;
 }

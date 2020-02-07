@@ -36,4 +36,11 @@ public interface ActivityService {
      * @return
      */
     Result deleteActivity(int id,int groupId);
+
+    /**
+     * 修改style字段
+     * @param activity
+     * @return
+     */
+    Result updateStyle(Activity activity);
 }
