@@ -23,10 +23,18 @@ public interface GroupService {
     Result getGroupMessage(int classId,int userId);
 
     /**
-     * 1
+     * 查询分组的活动数据情况
      * @param classId
      * @param userId
      * @return
      */
     Result getGroup(int classId,int userId);
+
+    /**
+     * 查询分组的资源数据情况
+     * @param userId
+     * @param classId
+     * @return
+     */
+    Result getResource(int userId,int classId);
 }

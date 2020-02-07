@@ -59,4 +59,8 @@ class GroupMapperTest {
     }
 
 
+    @Test
+    void getResource() throws SQLException{
+        System.out.println(groupMapper.getResource(1));
+    }
 }

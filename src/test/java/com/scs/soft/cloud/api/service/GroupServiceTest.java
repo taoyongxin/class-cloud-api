@@ -33,4 +33,10 @@ class GroupServiceTest {
         Result result  = groupService.getGroup(1,2);
         System.out.println(result);
     }
+
+    @Test
+    void getResource() {
+        Result result  = groupService.getResource(1,1);
+        System.out.println(result);
+    }
 }

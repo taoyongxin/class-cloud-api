@@ -78,11 +78,21 @@ public interface GroupMapper {
 
     /**
      *
-     * 11
+     * 查询分组活动（存在活动的分组)
      * @param classId
      * @return
      * @throws SQLException
      */
     @Select("SELECT * FROM t_group WHERE class_id = #{classId} AND activity_number != 0 ")
     List<Map> getGroup(int classId) throws SQLException;
+
+    /**
+     * 查询分组资源(存在资源的分组)
+     * @param classId
+     * @return
+     * @throws SQLException
+     */
+    @Select("SELECT * FROM t_group WHERE class_id = #{classId} AND resource_number != 0 ")
+    List<Map> getResource(int classId) throws SQLException;
+
 }

@@ -6,6 +6,7 @@ import com.scs.soft.cloud.api.domain.entity.Group;
 import com.scs.soft.cloud.api.mapper.ActivityMapper;
 import com.scs.soft.cloud.api.mapper.CommonMapper;
 import com.scs.soft.cloud.api.mapper.GroupMapper;
+import com.scs.soft.cloud.api.mapper.ResourceMapper;
 import com.scs.soft.cloud.api.service.GroupService;
 import com.scs.soft.cloud.api.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,8 @@ public class GroupServiceImpl implements GroupService {
     private GroupMapper groupMapper;
     @Resource
     private ActivityMapper activityMapper;
+    @Resource
+    private ResourceMapper resourceMapper;
     @Override
     public Result insertGroup(Group group) {
         List<Group> groupList;
@@ -98,6 +101,32 @@ public class GroupServiceImpl implements GroupService {
                 System.out.println(group.get("name"));
                 map = activityMapper.getActivityByGroupId(Integer.parseInt(group.get("id").toString()),userId);
                 group.put("activityList",map);
+            }
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+            return Result.failure(ResultCode.DATABASE_ERROR);
+        }
+        return Result.success(groups);
+    }
+
+    @Override
+    public Result getResource(int userId, int classId) {
+        List<Map> groups;
+        List<Map> map;
+        try {
+            groups = groupMapper.getResource(classId);
+            for (Map group:groups){
+                int overResourceNumber = 0;
+                map = resourceMapper.getResourceByGroupId(userId,Integer.parseInt(group.get("id").toString()));
+                for (Map resource:map){
+                    if (resource.get("view_status").equals(1)){
+                        System.out.println(resource.get("view_status"));
+                        overResourceNumber++;
+                    }
+                }
+                System.out.println(overResourceNumber);
+                group.put("resourceList",map);
+                group.put("overResourceNumbers",overResourceNumber);
             }
         } catch (SQLException e) {
             log.error(e.getMessage());
