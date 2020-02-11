@@ -1,6 +1,8 @@
 package com.scs.soft.cloud.api.mapper;
 
+
 import com.scs.soft.cloud.api.CloudApiApplication;
+import com.scs.soft.cloud.api.domain.entity.Permission;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,4 +22,10 @@ class PermissionMapperTest {
     }
 
 
+    @Test
+    void updateStyle() throws SQLException{
+        Permission permission = permissionMapper.getPermissionById(2);
+        permission.setStyle((short)1);
+        permissionMapper.updateStyle(permission);
+    }
 }

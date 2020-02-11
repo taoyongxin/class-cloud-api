@@ -1,14 +1,12 @@
 package com.scs.soft.cloud.api.controller;
 
 import com.scs.soft.cloud.api.common.Result;
+import com.scs.soft.cloud.api.domain.entity.Permission;
 import com.scs.soft.cloud.api.service.PermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -29,5 +27,11 @@ public class PermissionController {
         return permissionService.getPermissionByParentId(parentId);
     }
 
+    @ApiOperation(value = "修改权限的资源活动style",notes = "")
+    @PutMapping(value = "/style")
+    Result updateStyle(@RequestBody Permission permission){
+        return permissionService.updateStyle(permission);
+    }
 }
+
 

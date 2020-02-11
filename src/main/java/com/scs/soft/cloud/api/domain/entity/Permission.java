@@ -19,4 +19,5 @@ public class Permission {
     private Integer authorization;
     private Short status;
     private Short sort;
+    private Short style;
 }
