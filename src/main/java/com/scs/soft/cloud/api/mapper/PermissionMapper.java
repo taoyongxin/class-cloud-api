@@ -16,6 +16,6 @@ public interface PermissionMapper {
      * @return
      * @throws SQLException
      */
-    @Select("SELECT * FROM t_permission WHERE parent_id = #{parentId}")
+    @Select("SELECT * FROM t_permission WHERE parent_id = #{parentId} ORDER BY sort ASC")
     List<Map> getPermissionByParentId(int parentId) throws SQLException;
 }
